@@ -18,11 +18,7 @@ describe("PUT /api/boats/:id", () => {
     flyingDutchman.coord_x = (flyingDutchman.coord_x + 2) % 12;
     flyingDutchman.coord_y = (flyingDutchman.coord_y + 1) % 6;
 
-    await tables.boat.update(
-      flyingDutchman.id,
-      flyingDutchman.coord_x,
-      flyingDutchman.coord_y
-    );
+    await tables.boat.update(flyingDutchman);
 
     const updatedFlyingDutchman = (await tables.boat.readAll()).find(
       (boat) => boat.name === "Flying Dutchman"
@@ -39,11 +35,7 @@ describe("PUT /api/boats/:id", () => {
     flyingDutchman.coord_x = (flyingDutchman.coord_x + 2) % 12;
     flyingDutchman.coord_y = (flyingDutchman.coord_y + 1) % 6;
 
-    const affectedBoats = await tables.boat.update(
-      flyingDutchman.id,
-      flyingDutchman.coord_x,
-      flyingDutchman.coord_y
-    );
+    const affectedBoats = await tables.boat.update(flyingDutchman);
 
     expect(affectedBoats).toBe(1);
   });
