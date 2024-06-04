@@ -1,12 +1,15 @@
-create table user (
-  id int unsigned primary key auto_increment not null,
-  email varchar(255) not null unique,
-  password varchar(255) not null
+CREATE TABLE boat (
+  id INT AUTO_INCREMENT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  coord_x INT NOT NULL,
+  coord_y INT NOT NULL,
+  PRIMARY KEY(id)
 );
 
-create table item (
-  id int unsigned primary key auto_increment not null,
-  title varchar(255) not null,
-  user_id int unsigned not null,
-  foreign key(user_id) references user(id)
+CREATE TABLE tile (
+  id INT AUTO_INCREMENT NOT NULL,
+  type VARCHAR(255) NOT NULL,
+  coord_x INT NOT NULL,
+  coord_y INT NOT NULL,
+  PRIMARY KEY(id)
 );
