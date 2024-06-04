@@ -109,7 +109,7 @@ Tu peux maintenant réaliser la suite, étape par étape (pour chaque étape, su
 
 - `npm run test step1` : ajouter un champ `has_treasure` à la table `tile` (booléen, non nul, `false` par défaut).
 - `npm run test step2` : créer une route `GET /api/tiles` (tu peux suivre le modèle de `GET /api/boats`).
-- `npm run test step3` : créer une route `PUT /api/boats/:id` pour mettre à jour un bateau de la base de données. Ta route devra renvoyer un statut `204` si le bateau a été mis à jour, et un statut `404` si la demande de mise a jour n'a affecté aucune ligne (traduction : l'id fourni n'existait pas dans la base de données). Dans ton controller, tu peux accéder avec le paramètre `req` à :
+- `npm run test step3` : créer une route `PUT /api/boats/:id` pour mettre à jour un bateau de la base de données. Ta route devra renvoyer un statut `204` si la mise à jour a réussi. Dans ton controller, tu peux accéder avec le paramètre `req` à :
   - l'id du bateau (`req.params.id`),
   - ses coordonnées X et Y (`req.body.coord_x` et `req.body.coord_y`).
 - `npm run test step4` : créer un middleware dans `server/app/services/tileExists.js` pour tester si une tuile avec les coordonnées `req.body.coord_x` et `req.body.coord_y` existe ou non dans la base de données.
