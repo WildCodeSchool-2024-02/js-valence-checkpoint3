@@ -1,14 +1,21 @@
-const TileRepository = require("../../database/models/TileRepository");
+const tables = require("../../database/tables");
 
 const tileExists = async (req, res, next) => {
-  const { coordX, coordY } = req.body;
+  const coords = req.body;
+
+  if (coords.coord_x > 11 || coords.coord_y > 5) {
+    res.sendStatus(422);
+    return;
+  }
 
   try {
-    const tile = await TileRepository.readByCoordinates(coordX, coordY);
-    if (tile) {
-      next()
-    } else {
-      res.sendStatus(422);
+    const tiles = await tables.tile.readByCoordinates(
+      coords.coord_x,
+      coords.coord_y
+    );
+
+    if (tiles) {
+      next();
     }
   } catch (err) {
     next(err);

@@ -9,16 +9,4 @@ const browse = async (req, res, next) => {
   }
 };
 
-const update = async (req, res, next) => {
-  const { id } = req.params;
-  const { coordX, coordY } = req.body;
-
-  try {
-    await tables.tile.update({ id, coordX, coordY });
-    res.sendStatus(204);
-  } catch (err) {
-    next(err);
-  }
-};
-
-module.exports = { browse, update };
+module.exports = { browse };

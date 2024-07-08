@@ -6,37 +6,42 @@ class TileRepository extends AbstractRepository {
   }
 
   async readAll() {
+    // Execute the SQL SELECT query to retrieve all tiles from the "tile" table
     const [rows] = await this.database.query(
-      `SELECT * FROM ${this.table} ORDER BY coord_y, coord_x`
+      `select * from ${this.table} order by coord_y, coord_x`
+    );
+
+    // Return the array of tiles
+    return rows;
+  }
+
+  async readByCoordinates(coordX, coordY) {
+    const [rows] = await this.database.query(
+      `select * from ${this.table} where coord_y = ? and coord_x = ?`,
+      [coordY, coordX]
     );
     return rows;
   }
 
   async getRandomIsland() {
     const [rows] = await this.database.query(
-      `SELECT id FROM ${this.table} WHERE type="island" ORDER BY rand() LIMIT 1`
+      `select id from ${this.table} where type="island" order by rand() limit 1`
     );
+
     return rows[0];
   }
 
   async hideTreasure(island) {
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET has_treasure =
-        CASE
-          WHEN id = ? THEN true
-          ELSE false
-        END`,
+      `update ${this.table} set has_treasure =
+        case
+          when id = ? then true
+          else false
+        end`,
       [island.id]
     );
-    return result;
-  }
 
-  async readByCoordinates(coordX, coordY) {
-    const [rows] = await this.database.query(
-      `SELECT * FROM ${this.table} WHERE coord_x = ? AND coord_y = ?`,
-      [coordX, coordY]
-    );
-    return rows[0];
+    return result;
   }
 }
 
