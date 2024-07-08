@@ -1,9 +1,10 @@
 const tables = require("../../database/tables");
 
 const browse = async (req, res, next) => {
+  const { name } = req.query;
   try {
     // Fetch all boats from the database
-    const boats = await tables.boat.readAll();
+    const boats = await tables.boat.readAll(name);
 
     // Respond with the boats in JSON format
     res.json(boats);
