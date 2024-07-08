@@ -7,9 +7,27 @@ CREATE TABLE boat (
 );
 
 CREATE TABLE tile (
-  id INT AUTO_INCREMENT NOT NULL,
-  type VARCHAR(255) NOT NULL,
-  coord_x INT NOT NULL,
-  coord_y INT NOT NULL,
-  PRIMARY KEY(id)
+  id INT AUTO_INCREMENT PRIMARY KEY,
+    type VARCHAR(255) NOT NULL,
+    coord_x INT NOT NULL,
+    coord_y INT NOT NULL,
+    has_treasure BOOLEAN NOT NULL DEFAULT FALSE
 );
+
+CREATE TABLE Album (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(255) NOT NULL,
+    genre VARCHAR(100),
+    image VARCHAR(255),
+    artiste VARCHAR(255)
+);
+
+CREATE TABLE Piste (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(255) NOT NULL,
+    url_youtube VARCHAR(255) NOT NULL,
+    album_id INT,
+    FOREIGN KEY (album_id) REFERENCES Album(id)
+);
+
+
