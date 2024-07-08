@@ -14,3 +14,4 @@ CREATE TABLE tile (
   has_treasure BOOLEAN NOT NULL DEFAULT 0,
   PRIMARY KEY(id)
 );
+
