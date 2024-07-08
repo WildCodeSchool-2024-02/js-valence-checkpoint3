@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const { browse } = require("../../../controllers/tileActions");
+const browse = require("../../../controllers/tileActions");
 
 router.get("/", browse);
 
