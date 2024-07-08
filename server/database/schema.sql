@@ -13,3 +13,21 @@ CREATE TABLE tile (
   coord_y INT NOT NULL,
   PRIMARY KEY(id)
 );
+
+CREATE TABLE Album (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(255) NOT NULL,
+    genre VARCHAR(100),
+    image VARCHAR(255),
+    artiste VARCHAR(255)
+);
+
+CREATE TABLE Piste (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(255) NOT NULL,
+    url_youtube VARCHAR(255) NOT NULL,
+    album_id INT,
+    FOREIGN KEY (album_id) REFERENCES Album(id)
+);
+
+
