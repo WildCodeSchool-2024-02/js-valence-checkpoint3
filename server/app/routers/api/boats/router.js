@@ -7,10 +7,11 @@ const router = express.Router();
 /* ************************************************************************* */
 
 const { browse, read, edit } = require("../../../controllers/boatActions");
+const tileExists = require("../../../services/tileExists");
 
 router.get("/", browse);
 router.get("/:id", read);
-router.put("/:id", edit);
+router.put("/:id", tileExists, edit);
 
 /* ************************************************************************* */
 
