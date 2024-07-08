@@ -11,5 +11,7 @@ CREATE TABLE tile (
   type VARCHAR(255) NOT NULL,
   coord_x INT NOT NULL,
   coord_y INT NOT NULL,
-  PRIMARY KEY(id)
+  has_treasure BOOLEAN NOT NULL DEFAULT FALSE,
+  PRIMARY KEY (id)
 );
+
