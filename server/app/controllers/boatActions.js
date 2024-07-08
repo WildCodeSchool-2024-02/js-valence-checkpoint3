@@ -13,6 +13,22 @@ const browse = async (req, res, next) => {
   }
 };
 
+const edit = async (req, res, next) => {
+  try {
+    const affectedRows = await tables.boat.update({
+      id: req.params.id,
+      ...req.body,
+    });
+    if (affectedRows === 0) {
+      throw new Error("Update failed");
+    }
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   browse,
+  edit,
 };
